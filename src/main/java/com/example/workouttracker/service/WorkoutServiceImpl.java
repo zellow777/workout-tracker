@@ -3,7 +3,6 @@ package com.example.workouttracker.service;
 import com.example.workouttracker.exceptions.ResourceNotFoundException;
 import com.example.workouttracker.model.Workout;
 import com.example.workouttracker.repository.WorkoutRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.List;
 @Service
 public class WorkoutServiceImpl implements WorkoutService {
 
-    @Autowired
-    private WorkoutRepository workoutRepository;
+    private final WorkoutRepository workoutRepository;
+
+    public WorkoutServiceImpl(WorkoutRepository workoutRepository) {
+        this.workoutRepository = workoutRepository;
+    }
 
     @Override
     public Workout saveWorkout(Workout workout) {

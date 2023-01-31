@@ -6,11 +6,9 @@ import java.util.List;
 
 public interface WorkoutService {
     Workout saveWorkout(Workout workout);
-    Workout updateWorkout(Workout workout);
     void deleteWorkout(Long workoutId);
     List<Workout> findAllWorkouts();
     Workout findWorkoutById(Long workoutId);
-
-    Workout updateWorkout(Long id, Workout updatedworkout);
+    Workout updateWorkout(Long id, Workout updatedWorkout);
 }
 

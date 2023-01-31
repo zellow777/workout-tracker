@@ -5,10 +5,12 @@ import com.example.workouttracker.model.Workout;
 import java.util.List;
 
 public interface WorkoutService {
-    Workout addWorkout(Workout workout);
+    Workout saveWorkout(Workout workout);
     Workout updateWorkout(Workout workout);
     void deleteWorkout(Long workoutId);
-    List<Workout> getAllWorkouts();
-    Workout getWorkoutById(Long workoutId);
+    List<Workout> findAllWorkouts();
+    Workout findWorkoutById(Long workoutId);
+
+    Workout updateWorkout(Long id, Workout updatedworkout);
 }
 

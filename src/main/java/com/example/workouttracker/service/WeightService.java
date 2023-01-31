@@ -9,4 +9,6 @@ public interface WeightService {
     Weight findWeightById(Long id);
     List<Weight> findAllWeights();
     void deleteWeight(Long id);
+
+    Weight updateWeight(Long id, Weight weight);
 }

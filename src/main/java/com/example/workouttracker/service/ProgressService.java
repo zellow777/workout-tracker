@@ -9,5 +9,7 @@ public interface ProgressService {
     Progress findProgressById(Long id);
     List<Progress> findAllProgress();
     void deleteProgress(Long id);
+
+    Progress updateProgress(Long id, Progress progress);
 }
 

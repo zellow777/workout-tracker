@@ -9,5 +9,7 @@ public interface MealService {
     Meal findMealById(Long id);
     List<Meal> findAllMeals();
     void deleteMeal(Long id);
+
+    Meal updateMeal(Long id, Meal updatedMeal);
 }
 

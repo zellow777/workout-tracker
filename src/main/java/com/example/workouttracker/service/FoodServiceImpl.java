@@ -1,5 +1,6 @@
 package com.example.workouttracker.service;
 
+import com.example.workouttracker.exceptions.ResourceNotFoundException;
 import com.example.workouttracker.model.Food;
 import com.example.workouttracker.repository.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,16 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public void deleteFood(Long id) {
         foodRepository.deleteById(id);
+    }
+
+    @Override
+    public Food updateFood(Long id, Food updatedFood) {
+        Food food = foodRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Goal not found"));
+        food.setCalories(updatedFood.getCalories());
+        food.setFat(updatedFood.getFat());
+        food.setCarbohydrates(food.getCarbohydrates());
+        food.setMeal(updatedFood.getMeal());
+        food.setProtein(food.getProtein());
+        return foodRepository.save(food);
     }
 }

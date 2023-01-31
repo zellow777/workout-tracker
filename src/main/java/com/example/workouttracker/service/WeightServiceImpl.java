@@ -1,5 +1,6 @@
 package com.example.workouttracker.service;
 
+import com.example.workouttracker.exceptions.ResourceNotFoundException;
 import com.example.workouttracker.model.Weight;
 import com.example.workouttracker.repository.WeightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,15 @@ public class WeightServiceImpl implements WeightService {
     @Override
     public void deleteWeight(Long id) {
         weightRepository.deleteById(id);
+    }
+
+    @Override
+    public Weight updateWeight(Long id, Weight updatedWeight) {
+        Weight weight = weightRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Goal not found"));
+        weight.setUser(updatedWeight.getUser());
+        weight.setDate(updatedWeight.getDate());
+        weight.setValue(updatedWeight.getValue());
+        return weightRepository.save(weight);
     }
 }
 

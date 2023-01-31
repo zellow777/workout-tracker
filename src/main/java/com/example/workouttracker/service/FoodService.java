@@ -9,5 +9,7 @@ public interface FoodService {
     Food findFoodById(Long id);
     List<Food> findAllFoods();
     void deleteFood(Long id);
+
+    Food updateFood(Long id, Food food);
 }
 

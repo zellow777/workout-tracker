@@ -1,5 +1,6 @@
 package com.example.workouttracker.service;
 
+import com.example.workouttracker.exceptions.ResourceNotFoundException;
 import com.example.workouttracker.model.Workout;
 import com.example.workouttracker.repository.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,7 @@ public class WorkoutServiceImpl implements WorkoutService {
     private WorkoutRepository workoutRepository;
 
     @Override
-    public Workout addWorkout(Workout workout) {
-        return workoutRepository.save(workout);
-    }
-
-    @Override
-    public Workout updateWorkout(Workout workout) {
+    public Workout saveWorkout(Workout workout) {
         return workoutRepository.save(workout);
     }
 
@@ -29,13 +25,24 @@ public class WorkoutServiceImpl implements WorkoutService {
     }
 
     @Override
-    public List<Workout> getAllWorkouts() {
+    public List<Workout> findAllWorkouts() {
         return workoutRepository.findAll();
     }
 
     @Override
-    public Workout getWorkoutById(Long workoutId) {
+    public Workout findWorkoutById(Long workoutId) {
         return workoutRepository.findById(workoutId).orElse(null);
+    }
+
+    @Override
+    public Workout updateWorkout(Long id, Workout updatedWorkout) {
+        Workout workout = workoutRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Goal not found"));
+        workout.setWorkoutType(updatedWorkout.getWorkoutType());
+        workout.setDescription(updatedWorkout.getDescription());
+        workout.setUser(updatedWorkout.getUser());
+        workout.setName(updatedWorkout.getName());
+        workout.setDate(updatedWorkout.getDate());
+        return workoutRepository.save(workout);
     }
 }
 

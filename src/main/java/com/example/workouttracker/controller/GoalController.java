@@ -8,11 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.apache.log4j.Logger;
 
 @RestController
 @RequestMapping("/workout-tracking_api/goals")
 public class GoalController {
-
+    String endPoint = "/workout-tracking_api/goals";
+    private static final Logger logger = Logger.getLogger(GoalController.class);
     private GoalService goalService;
 
     @Autowired
@@ -21,31 +23,36 @@ public class GoalController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Goal>> getAll() {
+    public ResponseEntity<List<Goal>> findAll() {
+        logger.info("FindAll() called at ");
         List<Goal> goals = goalService.getAllGoals();
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
     @GetMapping("/{Id}")
-    public ResponseEntity<Goal> getById(@PathVariable Long Id) {
+    public ResponseEntity<Goal> findById(@PathVariable Long Id) {
+        logger.info("FindByID called at " + endPoint);
         Goal goal = goalService.getGoalById(Id);
         return new ResponseEntity<>(goal, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Goal> save(@RequestBody Goal goal) {
+    public ResponseEntity<Goal> create(@RequestBody Goal goal) {
+        logger.info("create() called at " + endPoint);
         Goal createdGoal = goalService.createGoal(goal);
         return new ResponseEntity<>(createdGoal, HttpStatus.CREATED);
     }
 
     @PutMapping("/{Id}")
     public ResponseEntity<Goal> update(@PathVariable Long Id, @RequestBody Goal updatedGoal) {
+        logger.info("update() called at " + endPoint);
         Goal goal = goalService.updateGoal(Id, updatedGoal);
         return new ResponseEntity<>(goal, HttpStatus.OK);
     }
 
     @DeleteMapping("/{Id}")
     public ResponseEntity<Void> delete(@PathVariable Long Id) {
+        logger.info("delete() called at " + endPoint);
         goalService.deleteGoal(Id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

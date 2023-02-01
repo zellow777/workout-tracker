@@ -2,18 +2,19 @@ package com.example.workouttracker.controller;
 
 import com.example.workouttracker.model.Progress;
 import com.example.workouttracker.service.ProgressService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import org.apache.log4j.Logger;
 
 @RestController
 @RequestMapping("/workout-tracking_api/progresses")
 public class ProgressController {
     String endPoint = "/workout-tracking_api/progresses";
-    private static final Logger logger = Logger.getLogger(MealController.class);
+    private static final Logger logger = LogManager.getLogger(ProgressController.class);
     private final ProgressService progressService;
 
     public ProgressController(ProgressService progressService) {

@@ -2,17 +2,18 @@ package com.example.workouttracker.controller;
 
 import com.example.workouttracker.model.Food;
 import com.example.workouttracker.service.FoodService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import org.apache.log4j.Logger;
 
 @RestController
 @RequestMapping("/workout-tracking_api/foods")
 public class FoodController {
     String endPoint = "/workout-tracking_api/foods";
-    private static final Logger logger = Logger.getLogger(FoodController.class);
+    private static final Logger logger = LogManager.getLogger(FoodController.class);
 
     private final FoodService foodService;
 

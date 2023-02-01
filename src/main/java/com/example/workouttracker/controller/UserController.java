@@ -2,18 +2,19 @@ package com.example.workouttracker.controller;
 
 import com.example.workouttracker.model.User;
 import com.example.workouttracker.service.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import org.apache.log4j.Logger;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
     String endPoint = "/workout-tracking_api/users";
-    private static final Logger logger = Logger.getLogger(UserController.class);
+    private static final Logger logger = LogManager.getLogger(UserController.class);
     private final UserService userService;
 
     public UserController(UserService userService) {

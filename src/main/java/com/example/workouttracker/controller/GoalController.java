@@ -2,19 +2,21 @@ package com.example.workouttracker.controller;
 
 import com.example.workouttracker.model.Goal;
 import com.example.workouttracker.service.GoalService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import org.apache.log4j.Logger;
+
 
 @RestController
 @RequestMapping("/workout-tracking_api/goals")
 public class GoalController {
     String endPoint = "/workout-tracking_api/goals";
-    private static final Logger logger = Logger.getLogger(GoalController.class);
+    private static final Logger logger = LogManager.getLogger(GoalController.class);
     private GoalService goalService;
 
     @Autowired
